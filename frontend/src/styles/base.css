@@ -1,0 +1,79 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.es-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primario {
+  background: linear-gradient(135deg, var(--violeta-700), var(--lila-600));
+  color: white;
+  box-shadow: 0 12px 28px rgba(92, 45, 145, 0.28);
+}
+.btn-fantasma {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+.btn-linea {
+  background: white;
+  color: var(--violeta-800);
+  border: 1px solid var(--linea);
+}
+.btn-peligro {
+  background: #fce8ef;
+  color: #9f1239;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+.campo input, .campo textarea, .campo select {
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  padding: 11px 13px;
+  background: white;
+  color: var(--texto);
+  outline: none;
+}
+.campo input:focus, .campo textarea:focus, .campo select:focus {
+  border-color: var(--lila-500);
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.18);
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  background: var(--violeta-900);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+.admin-boot {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: var(--violeta-800);
+}
