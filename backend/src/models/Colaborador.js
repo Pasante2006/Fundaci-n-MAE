@@ -1,7 +1,29 @@
 import { query, sql } from '../config/db.js';
 import { toBit } from '../utils/asyncHandler.js';
 
+let tablaLista = false;
+
+async function asegurarTabla() {
+  if (tablaLista) return;
+  await query(`
+    IF OBJECT_ID(N'dbo.colaboradores', N'U') IS NULL
+    BEGIN
+      CREATE TABLE dbo.colaboradores (
+        id           INT            IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        nombre       NVARCHAR(150)  NOT NULL,
+        descripcion  NVARCHAR(MAX)  NULL,
+        imagen       NVARCHAR(255)  NULL,
+        orden        INT            NOT NULL CONSTRAINT DF_colaboradores_orden DEFAULT (0),
+        activo       BIT            NOT NULL CONSTRAINT DF_colaboradores_activo DEFAULT (1),
+        creado_en    DATETIME2(0)   NOT NULL CONSTRAINT DF_colaboradores_creado DEFAULT (SYSDATETIME())
+      );
+    END
+  `);
+  tablaLista = true;
+}
+
 export async function listar({ soloActivos = false } = {}) {
+  await asegurarTabla();
   const result = await query(
     `SELECT id, nombre, descripcion, imagen, orden, activo, creado_en
      FROM dbo.colaboradores

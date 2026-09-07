@@ -54,3 +54,4 @@ app.listen(port, () => {
   console.log(`MAE API en http://localhost:${port}  |  vista: ${origin}`);
   if (!db.conectado) console.log('Esperando conexión a SQL Server…');
 });
+

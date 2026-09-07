@@ -12,7 +12,13 @@ export default function Hero({ introLista = true }) {
   const piezas = useMemo(() => {
     const hero = sitio.media.hero || [];
     const videos = sitio.media.video_principal || [];
-    return [...videos, ...hero];
+    const galeria = (sitio.media.galeria || []).filter((item) => item.tipo === 'video');
+    const vistos = new Set();
+    return [...videos, ...hero, ...galeria].filter((item) => {
+      if (!item?.id || vistos.has(item.id)) return false;
+      vistos.add(item.id);
+      return true;
+    });
   }, [sitio.media]);
 
   const [indice, setIndice] = useState(0);

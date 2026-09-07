@@ -16,7 +16,13 @@ export async function agruparPublico() {
   const filas = await listar({ soloActivos: true });
   const grupos = { logo: [], hero: [], galeria: [], video_principal: [], causa: [] };
   for (const item of filas) {
-    if (grupos[item.seccion]) grupos[item.seccion].push(item);
+    if (grupos[item.seccion]) {
+      grupos[item.seccion].push(item);
+    } else if (item.tipo === 'video') {
+      grupos.video_principal.push(item);
+    } else {
+      grupos.galeria.push(item);
+    }
   }
   return grupos;
 }

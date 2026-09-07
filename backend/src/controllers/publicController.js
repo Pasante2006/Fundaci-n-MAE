@@ -7,34 +7,36 @@ import { getDbStatus } from '../config/db.js';
 import { fallbackSitio } from '../utils/fallbacks.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 
-export const sitio = asyncHandler(async (req, res) => {
+async function seguro(promesa, respaldo, etiqueta) {
   try {
-    const [configuracion, media, lugares, causas, colaboradores] = await Promise.all([
-      Configuracion.mapa(),
-      Media.agruparPublico(),
-      Lugar.listar({ soloActivos: true }),
-      Causa.listar({ soloActivos: true }),
-      Colaborador.listar({ soloActivos: true }),
-    ]);
-
-    res.json({
-      ok: true,
-      fuente: 'base_de_datos',
-      data: {
-        configuracion: { ...fallbackSitio.configuracion, ...configuracion },
-        media,
-        lugares,
-        causas,
-        colaboradores: colaboradores.length ? colaboradores : fallbackSitio.colaboradores,
-      },
-    });
-  } catch {
-    res.json({
-      ok: true,
-      fuente: 'respaldo',
-      data: fallbackSitio,
-    });
+    return await promesa;
+  } catch (error) {
+    console.warn(`Sitio público: no se pudo leer ${etiqueta}:`, error.message);
+    return respaldo;
   }
+}
+
+export const sitio = asyncHandler(async (req, res) => {
+  const [configuracion, media, lugares, causas, colaboradores] = await Promise.all([
+    seguro(Configuracion.mapa(), {}, 'configuracion'),
+    seguro(Media.agruparPublico(), fallbackSitio.media, 'media'),
+    seguro(Lugar.listar({ soloActivos: true }), [], 'lugares'),
+    seguro(Causa.listar({ soloActivos: true }), [], 'causas'),
+    seguro(Colaborador.listar({ soloActivos: true }), fallbackSitio.colaboradores, 'colaboradores'),
+  ]);
+
+  const hayBd = getDbStatus().conectado;
+  res.json({
+    ok: true,
+    fuente: hayBd ? 'base_de_datos' : 'respaldo',
+    data: {
+      configuracion: { ...fallbackSitio.configuracion, ...configuracion },
+      media,
+      lugares,
+      causas,
+      colaboradores: colaboradores.length ? colaboradores : fallbackSitio.colaboradores,
+    },
+  });
 });
 
 export const salud = asyncHandler(async (req, res) => {

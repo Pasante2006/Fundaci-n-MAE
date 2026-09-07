@@ -23,6 +23,16 @@ export default function Mapa() {
           <h3>Dónde abrazamos la esperanza</h3>
           <article className="mapa-tarjeta">
             <p>los sectores donde se abraza la esperanza</p>
+            {lugares.length > 0 && (
+              <ul className="mapa-sectores">
+                {lugares.map((lugar) => (
+                  <li key={lugar.id}>
+                    <strong>{lugar.titulo || lugar.municipio}</strong>
+                    <span>{[lugar.municipio, lugar.departamento].filter(Boolean).join(', ')}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </article>
         </div>
         <div className="mapa-lado">

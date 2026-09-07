@@ -3,7 +3,11 @@ import { useSitio } from '../../context/SiteContext.jsx';
 
 export default function Galeria() {
   const { sitio } = useSitio();
-  const items = [...(sitio.media.galeria || []), ...(sitio.media.hero || [])].slice(0, 6);
+  const items = [
+    ...(sitio.media.galeria || []),
+    ...(sitio.media.hero || []),
+    ...(sitio.media.video_principal || []),
+  ].filter((item, i, lista) => lista.findIndex((otro) => otro.id === item.id) === i).slice(0, 6);
 
   return (
     <section className="seccion" id="galeria">
