@@ -34,9 +34,17 @@ GO
 
 IF NOT EXISTS (SELECT 1 FROM dbo.colaboradores)
 BEGIN
-    INSERT INTO dbo.colaboradores (nombre, descripcion, orden, activo) VALUES
-    (N'Escuelita de Malttería', N'Espacio de formación y cuidado para la niñez, donde el aprendizaje se vive con cariño, juego y esperanza.', 1, 1),
-    (N'Abre Tus Ojos', N'Iniciativa de sensibilización que invita a mirar con empatía las realidades de quienes más lo necesitan.', 2, 1),
-    (N'Abuelos', N'Acompañamiento a personas mayores para honrar su historia, su dignidad y su lugar en la comunidad.', 3, 1);
+    INSERT INTO dbo.colaboradores (nombre, descripcion, imagen, orden, activo) VALUES
+    (N'Escuelita de Maltería', N'Espacio de formación y cuidado para la niñez, donde el aprendizaje se vive con cariño, juego y esperanza.', N'/colab-malteria.png', 1, 1),
+    (N'Abre Tus Ojos', N'Iniciativa de sensibilización que invita a mirar con empatía las realidades de quienes más lo necesitan.', N'/colab-abre-tus-ojos.png', 2, 1),
+    (N'Abuelitos', N'Acompañamiento a personas mayores para honrar su historia, su dignidad y su lugar en la comunidad.', N'/colab-abuelitos.png', 3, 1);
 END
+GO
+
+UPDATE dbo.colaboradores SET nombre = N'Escuelita de Maltería', imagen = COALESCE(NULLIF(imagen, N''), N'/colab-malteria.png')
+WHERE nombre LIKE N'%Maltter%' OR (orden = 1 AND nombre LIKE N'%Escuelita%');
+UPDATE dbo.colaboradores SET imagen = COALESCE(NULLIF(imagen, N''), N'/colab-abre-tus-ojos.png')
+WHERE nombre LIKE N'%Abre Tus Ojos%';
+UPDATE dbo.colaboradores SET nombre = N'Abuelitos', imagen = COALESCE(NULLIF(imagen, N''), N'/colab-abuelitos.png')
+WHERE nombre IN (N'Abuelos', N'abuelos') OR (orden = 3 AND nombre LIKE N'%Abuel%');
 GO

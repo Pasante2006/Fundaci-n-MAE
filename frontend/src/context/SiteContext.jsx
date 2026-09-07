@@ -20,18 +20,21 @@ const respaldo = {
   colaboradores: [
     {
       id: 1,
-      nombre: 'Escuelita de Malttería',
+      nombre: 'Escuelita de Maltería',
       descripcion: 'Espacio de formación y cuidado para la niñez, donde el aprendizaje se vive con cariño, juego y esperanza.',
+      imagen: '/colab-malteria.png',
     },
     {
       id: 2,
       nombre: 'Abre Tus Ojos',
       descripcion: 'Iniciativa de sensibilización que invita a mirar con empatía las realidades de quienes más lo necesitan.',
+      imagen: '/colab-abre-tus-ojos.png',
     },
     {
       id: 3,
-      nombre: 'Abuelos',
+      nombre: 'Abuelitos',
       descripcion: 'Acompañamiento a personas mayores para honrar su historia, su dignidad y su lugar en la comunidad.',
+      imagen: '/colab-abuelitos.png',
     },
   ],
 };

@@ -210,8 +210,16 @@
   .mae-splash-wing-right,
   .mae-bf-wing-left,
   .mae-bf-wing-right,
-  .floating-butterfly img {
+  .floating-butterfly img,
+  .card-colab .marca-mariposa img,
+  .colab-bf {
     animation: none;
+  }
+
+  .card-colab,
+  .card-colab:hover {
+    transition: none;
+    transform: none;
   }
 
   .hero-grid,

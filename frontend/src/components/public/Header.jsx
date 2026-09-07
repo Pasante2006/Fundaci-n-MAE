@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { useSitio } from '../../context/SiteContext.jsx';
 
@@ -10,8 +9,8 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <a className="skip" href="#contenido">Saltar al contenido</a>
-      <a className="brand" href="#inicio">
+      <a className="skip" href="/#contenido">Saltar al contenido</a>
+      <a className="brand" href="/#inicio">
         <img src={logo} alt="Logo Fundación MAE" />
         <span>
           {cfg.nombre_corto}
@@ -22,13 +21,12 @@ export default function Header() {
         ☰
       </button>
       <nav className={`nav-public ${abierto ? 'abierto' : ''}`}>
-        <a href="#inicio" onClick={() => setAbierto(false)}>Inicio</a>
-        <a href="#impacto" onClick={() => setAbierto(false)}>Impacto</a>
-        <a href="#nosotros" onClick={() => setAbierto(false)}>Nosotros</a>
-        <a href="#colaboradores" onClick={() => setAbierto(false)}>Colaboradores</a>
-        <a href="#causas" onClick={() => setAbierto(false)}>Causas</a>
-        <a href="#mapa" onClick={() => setAbierto(false)}>Mapa</a>
-        <Link to="/admin/login">Admin</Link>
+        <a href="/#inicio" onClick={() => setAbierto(false)}>Inicio</a>
+        <a href="/#impacto" onClick={() => setAbierto(false)}>Impacto</a>
+        <a href="/#nosotros" onClick={() => setAbierto(false)}>Nosotros</a>
+        <a href="/#colaboradores" onClick={() => setAbierto(false)}>Colaboradores</a>
+        <a href="/#causas" onClick={() => setAbierto(false)}>Causas</a>
+        <a href="/#mapa" onClick={() => setAbierto(false)}>Mapa</a>
       </nav>
     </header>
   );

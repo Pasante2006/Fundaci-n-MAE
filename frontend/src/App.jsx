@@ -14,7 +14,7 @@ import ColaboradoresPage from './pages/admin/ColaboradoresPage.jsx';
 function RequireAuth({ children }) {
   const { usuario, cargando } = useAuth();
   if (cargando) return <div className="admin-boot">Cargando sesión…</div>;
-  if (!usuario) return <Navigate to="/admin/login" replace />;
+  if (!usuario) return <Navigate to="/PortalMAE" replace />;
   return children;
 }
 
@@ -24,7 +24,8 @@ export default function App() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
       </Route>
-      <Route path="/admin/login" element={<LoginPage />} />
+      <Route path="/PortalMAE" element={<LoginPage />} />
+      <Route path="/admin/login" element={<Navigate to="/PortalMAE" replace />} />
       <Route
         path="/admin"
         element={

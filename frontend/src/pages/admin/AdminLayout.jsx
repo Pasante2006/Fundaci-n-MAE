@@ -35,7 +35,7 @@ export default function AdminLayout() {
             type="button"
             onClick={async () => {
               await logout();
-              navigate('/admin/login');
+              navigate('/PortalMAE');
             }}
           >
             Cerrar sesión

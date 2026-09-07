@@ -21,10 +21,10 @@ export const fallbackSitio = {
   colaboradores: [
     {
       id: 1,
-      nombre: 'Escuelita de Malttería',
+      nombre: 'Escuelita de Maltería',
       descripcion:
         'Espacio de formación y cuidado para la niñez, donde el aprendizaje se vive con cariño, juego y esperanza.',
-      imagen: null,
+      imagen: '/colab-malteria.png',
       orden: 1,
     },
     {
@@ -32,15 +32,15 @@ export const fallbackSitio = {
       nombre: 'Abre Tus Ojos',
       descripcion:
         'Iniciativa de sensibilización que invita a mirar con empatía las realidades de quienes más lo necesitan.',
-      imagen: null,
+      imagen: '/colab-abre-tus-ojos.png',
       orden: 2,
     },
     {
       id: 3,
-      nombre: 'Abuelos',
+      nombre: 'Abuelitos',
       descripcion:
         'Acompañamiento a personas mayores para honrar su historia, su dignidad y su lugar en la comunidad.',
-      imagen: null,
+      imagen: '/colab-abuelitos.png',
       orden: 3,
     },
   ],

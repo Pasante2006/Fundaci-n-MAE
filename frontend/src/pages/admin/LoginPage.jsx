@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import Header from '../../components/public/Header.jsx';
+import Footer from '../../components/public/Footer.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
 
 export default function LoginPage() {
@@ -28,7 +30,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="login-page">
+    <>
+      <Header />
+      <main className="login-page">
       <div className="login-card">
         <img src={logo} alt="Fundación MAE" />
         <h1>Entrar al panel</h1>
@@ -49,5 +53,7 @@ export default function LoginPage() {
         </form>
       </div>
     </main>
+      <Footer />
+    </>
   );
 }

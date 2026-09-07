@@ -26,7 +26,23 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <>
+    <div className="dash-escena">
+      <div className="dash-mariposas" aria-hidden="true">
+        <img className="dash-bf dash-bf-a" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-b" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-c" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-d" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-e" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-f" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-g" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-h" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-i" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-j" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-k" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-l" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-m" src="/secundaria.png" alt="" />
+        <img className="dash-bf dash-bf-n" src="/secundaria.png" alt="" />
+      </div>
       <div className="admin-top">
         <div>
           <h1>Hola, {usuario?.nombre?.split(' ')[0]}</h1>
@@ -40,6 +56,6 @@ export default function DashboardPage() {
         <Link className="stat" to="/admin/causas"><b>{conteos.causas}</b>Causas</Link>
         <Link className="stat" to="/admin/lugares"><b>{conteos.lugares}</b>Lugares</Link>
       </div>
-    </>
+    </div>
   );
 }

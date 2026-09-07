@@ -130,6 +130,40 @@
 
 .seccion { padding: 88px 6vw; }
 .seccion-oscura { background: var(--violeta-950); color: white; }
+.colaboradores-escena {
+  position: relative;
+  overflow: hidden;
+}
+.colaboradores-escena .grid-3,
+.colaboradores-escena h3,
+.colaboradores-escena .eyebrow {
+  position: relative;
+  z-index: 1;
+}
+.colab-mariposas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.colab-bf {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0.42;
+  filter: drop-shadow(0 4px 10px rgba(232, 212, 255, 0.16));
+  transform-origin: center 55%;
+  animation: mae-aleteo 0.85s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite,
+    colab-revoloteo 4.6s ease-in-out infinite;
+}
+.colab-bf-a { left: 2%; bottom: 10%; width: 68px; animation-duration: 0.82s, 4.8s; }
+.colab-bf-b { left: 8%; bottom: 24%; width: 44px; opacity: 0.34; animation-duration: 0.7s, 3.8s; animation-delay: 0.2s, 0.4s; }
+.colab-bf-c { left: 3.5%; bottom: 38%; width: 34px; opacity: 0.3; animation-duration: 0.95s, 5.2s; animation-delay: 0.45s, 0.1s; }
+.colab-bf-d { right: 2.5%; top: 10%; width: 74px; animation-duration: 0.78s, 5s; animation-delay: 0.1s, 0.3s; }
+.colab-bf-e { right: 10%; top: 28%; width: 46px; opacity: 0.36; animation-duration: 0.9s, 4.2s; animation-delay: 0.35s, 0.6s; }
+@keyframes colab-revoloteo {
+  0%, 100% { translate: 0 0; rotate: -6deg; }
+  50% { translate: 10px -16px; rotate: 7deg; }
+}
 .seccion h3 {
   font-family: var(--fuente-display);
   font-size: clamp(2rem, 4vw, 3.3rem);
@@ -144,9 +178,20 @@
 }
 .impacto {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
   align-items: center;
+}
+.impacto-foto {
+  margin: 0;
+  background: transparent;
+  justify-self: start;
+  max-width: 380px;
+}
+.impacto-foto img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .impacto-numero {
   font-family: var(--fuente-display);
@@ -186,14 +231,44 @@
   overflow: hidden;
   border: 1px solid var(--linea);
   color: var(--texto);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.card-colab:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(36, 20, 60, 0.16);
+  border-color: rgba(167, 139, 250, 0.45);
 }
 .card-colab h4 { margin: 0 0 8px; color: var(--violeta-800); }
 .card-colab p { margin: 0; color: var(--texto-suave); line-height: 1.6; }
 .card-colab .marca {
-  width: 48px; height: 48px; border-radius: 16px;
-  display: grid; place-items: center;
-  background: var(--violeta-800); color: white; font-weight: 700;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: var(--violeta-800);
+  color: white;
+  font-weight: 700;
   margin-bottom: 18px;
+}
+.card-colab .marca-mariposa {
+  background: radial-gradient(circle at 50% 40%, #5c2d91, #24143c);
+  overflow: visible;
+}
+.card-colab .marca-mariposa img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  transform-origin: center 55%;
+  animation: mae-aleteo 0.9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  filter: drop-shadow(0 4px 8px rgba(36, 10, 70, 0.35));
+}
+.card-colab-foto {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 0 0 16px;
 }
 .galeria {
   display: grid;
@@ -319,6 +394,35 @@
   letter-spacing: 0.03em;
   color: #c4a0ff;
 }
+.btn-arriba {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 50;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(160deg, var(--lila-500), var(--violeta-800));
+  box-shadow: 0 12px 28px rgba(36, 20, 60, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+.btn-arriba.es-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.btn-arriba:hover { transform: translateY(-3px); }
+.btn-arriba svg { width: 26px; height: 26px; }
+
 .vacio-elegante {
   border: 1px dashed var(--linea);
   border-radius: 18px;
@@ -342,6 +446,9 @@
   }
   .nav-public.abierto { display: flex; }
   .hero-grid, .impacto, .nosotros, .grid-3 { grid-template-columns: 1fr; }
+  .colab-bf-b, .colab-bf-c, .colab-bf-e { display: none; }
+  .colab-bf-a { width: 44px; bottom: 4%; }
+  .colab-bf-d { width: 48px; top: 6%; }
   .mapa-seccion { flex-direction: column; align-items: stretch; max-width: none; gap: 20px; }
   .mapa-copy { flex: none; max-width: none; }
   .mapa-copy h3 { max-width: none; white-space: normal; }
