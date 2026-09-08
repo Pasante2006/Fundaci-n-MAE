@@ -9,7 +9,6 @@ import ConfigPage from './pages/admin/ConfigPage.jsx';
 import MediaPage from './pages/admin/MediaPage.jsx';
 import LugaresPage from './pages/admin/LugaresPage.jsx';
 import CausasPage from './pages/admin/CausasPage.jsx';
-import ColaboradoresPage from './pages/admin/ColaboradoresPage.jsx';
 
 function RequireAuth({ children }) {
   const { usuario, cargando } = useAuth();
@@ -39,7 +38,7 @@ export default function App() {
         <Route path="media" element={<MediaPage />} />
         <Route path="lugares" element={<LugaresPage />} />
         <Route path="causas" element={<CausasPage />} />
-        <Route path="colaboradores" element={<ColaboradoresPage />} />
+        <Route path="colaboradores" element={<Navigate to="/admin/causas" replace />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

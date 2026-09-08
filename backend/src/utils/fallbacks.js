@@ -3,9 +3,11 @@ export const fallbackSitio = {
     nombre_corto: 'MAE',
     nombre_completo: 'Manos que Abrazan la Esperanza',
     nombre_legal: 'Fundación MAE',
-    razon_social: 'Fundación Manos que Abrazan la Esperanza',
+    razon_social: 'Fundación MAE (Margarita Maria Arango Escobar – Manos que Abrazan la Esperanza).',
     proposito:
-      'Acompañamos a comunidades de Colombia para transformar realidades con dignidad, solidaridad y esperanza.',
+      'Servir y apoyar a diferentes comunidades vulnerables, logrando impactar vidas de manera positiva y transformadora a través de MAE. Buscamos ser un canal de amor, brindando herramientas, acompañamiento y esperanza a quienes más lo necesitan.',
+    filosofia:
+      'Toda la labor de la fundación se rige por la premisa de que "por encima de bien, está mejor", buscando siempre entregar excelencia y calidad humana en cada acto de generosidad.',
     vidas_impactadas: '100+',
     eslogan: 'Manos que Abrazan la Esperanza',
   },

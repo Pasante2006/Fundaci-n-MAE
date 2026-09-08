@@ -7,7 +7,6 @@ const links = [
   { to: '/admin', label: 'Resumen', end: true },
   { to: '/admin/configuracion', label: 'Textos del sitio' },
   { to: '/admin/media', label: 'Fotos y videos' },
-  { to: '/admin/colaboradores', label: 'Colaboradores' },
   { to: '/admin/causas', label: 'Causas' },
   { to: '/admin/lugares', label: 'Mapa / lugares' },
 ];

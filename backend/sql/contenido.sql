@@ -20,8 +20,9 @@ USING (VALUES
     (N'nombre_corto',     N'MAE', N'Nombre corto'),
     (N'nombre_completo',  N'Manos que Abrazan la Esperanza', N'Nombre completo'),
     (N'nombre_legal',     N'Fundación MAE', N'Nombre legal'),
-    (N'razon_social',     N'Fundación Manos que Abrazan la Esperanza', N'Razón social'),
-    (N'proposito',        N'Acompañamos a comunidades de Colombia para transformar realidades con dignidad, solidaridad y esperanza.', N'Propósito'),
+    (N'razon_social',     N'Fundación MAE (Margarita Maria Arango Escobar – Manos que Abrazan la Esperanza).', N'Razón social / Nombre'),
+    (N'proposito',        N'Servir y apoyar a diferentes comunidades vulnerables, logrando impactar vidas de manera positiva y transformadora a través de MAE. Buscamos ser un canal de amor, brindando herramientas, acompañamiento y esperanza a quienes más lo necesitan.', N'Propósito principal'),
+    (N'filosofia',        N'Toda la labor de la fundación se rige por la premisa de que "por encima de bien, está mejor", buscando siempre entregar excelencia y calidad humana en cada acto de generosidad.', N'Filosofía'),
     (N'vidas_impactadas', N'100+', N'Familias impactadas'),
     (N'eslogan',          N'Manos que Abrazan la Esperanza', N'Eslogan')
 ) AS origen (clave, valor, etiqueta)

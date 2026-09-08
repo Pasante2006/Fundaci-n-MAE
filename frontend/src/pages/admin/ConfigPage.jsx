@@ -9,9 +9,14 @@ const GRUPOS = [
     claves: ['nombre_corto', 'nombre_completo', 'nombre_legal'],
   },
   {
-    titulo: 'Mensaje en la landing',
-    texto: 'Textos que ven las personas en Huella viva y Quiénes somos.',
-    claves: ['vidas_impactadas', 'eslogan', 'proposito'],
+    titulo: 'Huella viva',
+    texto: 'Número de impacto y frase corta del hero.',
+    claves: ['vidas_impactadas', 'eslogan'],
+  },
+  {
+    titulo: 'Quiénes somos',
+    texto: 'Contenido de la sección Nosotros en la landing.',
+    claves: ['razon_social', 'proposito', 'filosofia'],
   },
 ];
 
@@ -20,12 +25,14 @@ const AYUDAS = {
   nombre_completo: 'Frase bajo el nombre corto.',
   nombre_legal: 'Nombre que aparece en el pie de página.',
   vidas_impactadas: 'Número de familias, por ejemplo 100+.',
-  eslogan: 'Frase corta de la fundación.',
-  proposito: 'Texto de la sección Quiénes somos.',
+  eslogan: 'Frase corta bajo el nombre en el hero.',
+  razon_social: 'Razón social y nombre completo de la fundación.',
+  proposito: 'Propósito principal en Quiénes somos.',
+  filosofia: 'Filosofía en el hero y en Quiénes somos.',
 };
 
 function Campo({ item, onChange }) {
-  const largo = item.clave === 'proposito';
+  const largo = item.clave === 'proposito' || item.clave === 'filosofia';
   return (
     <label className={`campo${largo ? ' campo-ancho' : ''}`}>
       {item.etiqueta}

@@ -1,6 +1,7 @@
 import * as Colaborador from '../models/Colaborador.js';
 import { asyncHandler, httpError } from '../utils/asyncHandler.js';
 import { rutaPublica } from '../middlewares/upload.js';
+import { mapColaborador } from '../utils/mediaPath.js';
 
 function payload(req) {
   const nombre = String(req.body.nombre || '').trim();
@@ -15,16 +16,17 @@ function payload(req) {
 }
 
 export const listar = asyncHandler(async (req, res) => {
-  res.json({ ok: true, items: await Colaborador.listar() });
+  const items = (await Colaborador.listar()).map(mapColaborador);
+  res.json({ ok: true, items });
 });
 
 export const crear = asyncHandler(async (req, res) => {
-  const item = await Colaborador.crear(payload(req));
+  const item = mapColaborador(await Colaborador.crear(payload(req)));
   res.status(201).json({ ok: true, item });
 });
 
 export const actualizar = asyncHandler(async (req, res) => {
-  const item = await Colaborador.actualizar(Number(req.params.id), payload(req));
+  const item = mapColaborador(await Colaborador.actualizar(Number(req.params.id), payload(req)));
   if (!item) throw httpError(404, 'Colaborador no encontrado');
   res.json({ ok: true, item });
 });

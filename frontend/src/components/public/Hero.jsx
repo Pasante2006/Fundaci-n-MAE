@@ -39,7 +39,7 @@ export default function Hero({ introLista = true }) {
         <div className="hero-kicker">Fundación MAE</div>
         <h1>{cfg.nombre_corto}</h1>
         <h2>{cfg.nombre_completo}</h2>
-        <p>{cfg.proposito}</p>
+        <p>{cfg.filosofia}</p>
         <div className="hero-actions">
           <a className="btn btn-primario" href="#impacto">Ver el impacto</a>
           <a className="btn btn-fantasma" href="#nosotros">Conocer la fundación</a>
@@ -61,7 +61,7 @@ export default function Hero({ introLista = true }) {
         ) : (
           <div className="hero-frame principal hero-vacio">
             <div className="mae-logo-nombre mae-logo-oculto" data-mae-nombre-logo>
-              Maria Margarita Arango Escobar
+              Margarita Maria Arango Escobar
             </div>
             <img ref={targetRef} data-mae-logo-target className="mae-logo-oculto" src={logo} alt="Mariposa MAE" />
           </div>

@@ -178,7 +178,7 @@ export default function ButterflyIntro({ heroRef, targetRef, iniciar = true }) {
       {introVisible && (
         <div className="main-butterfly-intro" aria-hidden="true">
           <div ref={nombreRef} className="mae-intro-nombre">
-            <span>Maria Margarita Arango Escobar</span>
+            <span>Margarita Maria Arango Escobar</span>
           </div>
           <div ref={vueloRef} className="butterfly-flying">
             <div className="mae-intro-glow" />

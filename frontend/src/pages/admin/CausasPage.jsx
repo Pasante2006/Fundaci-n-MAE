@@ -3,8 +3,8 @@ import CatalogoPage from './CatalogoPage.jsx';
 export default function CausasPage() {
   return (
     <CatalogoPage
-      titulo="Causas"
-      endpoint="/api/causas"
+      titulo="Causas impactadas"
+      endpoint="/api/colaboradores"
       nombreNuevo="Nueva causa"
     />
   );

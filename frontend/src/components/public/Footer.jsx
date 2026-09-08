@@ -9,7 +9,7 @@ export default function Footer() {
         <strong>{cfg.nombre_legal}</strong>
         <div>{(cfg.razon_social || '').replace(/^Fundaci[oó]n\s+/i, '')}</div>
       </div>
-      <div className="site-footer-nombre">Maria Margarita Arango Escobar</div>
+      <div className="site-footer-nombre">Margarita Maria Arango Escobar</div>
       <address className="site-footer-dir">
         Camino a la Libertad #74 84, Manizales, Caldas, Mi casa induma
       </address>

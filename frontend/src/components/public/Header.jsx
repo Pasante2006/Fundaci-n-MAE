@@ -24,7 +24,6 @@ export default function Header() {
         <a href="/#inicio" onClick={() => setAbierto(false)}>Inicio</a>
         <a href="/#impacto" onClick={() => setAbierto(false)}>Impacto</a>
         <a href="/#nosotros" onClick={() => setAbierto(false)}>Nosotros</a>
-        <a href="/#colaboradores" onClick={() => setAbierto(false)}>Colaboradores</a>
         <a href="/#causas" onClick={() => setAbierto(false)}>Causas</a>
         <a href="/#mapa" onClick={() => setAbierto(false)}>Mapa</a>
       </nav>

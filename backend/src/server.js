@@ -16,13 +16,16 @@ import causaRoutes from './routes/causa.routes.js';
 import colaboradorRoutes from './routes/colaborador.routes.js';
 
 const app = express();
-const port = Number(process.env.PORT || 4000);
-const origin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+const port = Number(process.env.PORT || 4001);
+const origins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5185')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
 
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(
   cors({
-    origin,
+    origin: origins,
     credentials: true,
   }),
 );
@@ -49,9 +52,9 @@ connectDb()
     console.warn('La landing usará contenido de respaldo hasta que la BD responda.');
   });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   const db = getDbStatus();
-  console.log(`MAE API en http://localhost:${port}  |  vista: ${origin}`);
+  console.log(`MAE API en http://0.0.0.0:${port}  |  orígenes: ${origins.join(', ')}`);
   if (!db.conectado) console.log('Esperando conexión a SQL Server…');
 });
 

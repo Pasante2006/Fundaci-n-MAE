@@ -236,3 +236,177 @@
     opacity: 0;
   }
 }
+
+/* Corredor vertical: mariposas entre Impacto y Causas */
+.impacto-causas-escena {
+  position: relative;
+  overflow: clip;
+}
+
+.mariposas-corredor {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(128px, 16vw);
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+}
+
+/* —— Reposo en Impacto (moradas, quietas) —— */
+.mariposa-reposo {
+  position: absolute;
+  top: var(--bf-top, 20%);
+  left: var(--bf-left, 50%);
+  width: var(--bf-size, 44px);
+  height: var(--bf-size, 44px);
+}
+
+.mariposa-reposo-impacto .mariposa-reposo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.4;
+  filter: drop-shadow(0 4px 10px rgba(92, 45, 145, 0.2));
+  transform-origin: center 55%;
+  animation:
+    mae-aleteo var(--bf-dur-a, 0.85s) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite,
+    mariposa-reposo-vuelo var(--bf-dur-r, 4.8s) ease-in-out infinite;
+  animation-delay: 0s, var(--bf-delay-r, 0s);
+}
+
+@keyframes mariposa-reposo-vuelo {
+  0%, 100% { translate: 0 0; rotate: -5deg; }
+  50% { translate: 8px -12px; rotate: 6deg; }
+}
+
+/* —— Viajeras: suben con trayectoria ondulada —— */
+.mariposa-viajera {
+  --bf-morada: 0;
+  --bf-blanca: 1;
+  position: absolute;
+  left: var(--bf-left, 20%);
+  top: 102%;
+  width: var(--bf-size, 48px);
+  height: var(--bf-size, 48px);
+  animation-delay: var(--bf-delay, 0s);
+  will-change: top, transform, opacity;
+}
+
+.mariposa-viajera-capas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center 55%;
+  animation: mae-aleteo 0.88s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.mariposa-viajera-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(80, 40, 120, 0.18));
+}
+
+.mariposa-viajera-blanca { opacity: var(--bf-blanca, 1); }
+.mariposa-viajera-morada { opacity: var(--bf-morada, 0); }
+
+.mariposa-ruta-1 {
+  animation: mariposa-ruta-1 var(--bf-dur, 26s) ease-in-out infinite;
+  animation-delay: var(--bf-delay, 0s);
+}
+
+.mariposa-ruta-2 {
+  animation: mariposa-ruta-2 var(--bf-dur, 28s) ease-in-out infinite;
+  animation-delay: var(--bf-delay, 0s);
+}
+
+.mariposa-ruta-3 {
+  animation: mariposa-ruta-3 var(--bf-dur, 24s) ease-in-out infinite;
+  animation-delay: var(--bf-delay, 0s);
+}
+
+.mariposa-ruta-4 {
+  animation: mariposa-ruta-4 var(--bf-dur, 27s) ease-in-out infinite;
+  animation-delay: var(--bf-delay, 0s);
+}
+
+/* Rutas onduladas (inspiradas en el trazo verde del diseño) */
+@keyframes mariposa-ruta-1 {
+  0% { top: 102%; transform: translate3d(0, 0, 0) rotate(-14deg); opacity: 0; }
+  6% { opacity: var(--bf-vis, 0.45); }
+  16% { top: 84%; transform: translate3d(22px, 0, 0) rotate(9deg); }
+  28% { top: 72%; transform: translate3d(-16px, 0, 0) rotate(-7deg); }
+  42% { top: 58%; transform: translate3d(26px, 0, 0) rotate(11deg); }
+  56% { top: 44%; transform: translate3d(-12px, 0, 0) rotate(-8deg); }
+  70% { top: 30%; transform: translate3d(18px, 0, 0) rotate(7deg); }
+  84% { top: 16%; transform: translate3d(-20px, 0, 0) rotate(-6deg); }
+  94% { opacity: var(--bf-vis, 0.45); }
+  100% { top: -6%; transform: translate3d(8px, 0, 0) rotate(12deg); opacity: 0; }
+}
+
+@keyframes mariposa-ruta-2 {
+  0% { top: 102%; transform: translate3d(-6px, 0, 0) rotate(10deg); opacity: 0; }
+  6% { opacity: var(--bf-vis, 0.42); }
+  18% { top: 82%; transform: translate3d(-20px, 0, 0) rotate(-9deg); }
+  32% { top: 66%; transform: translate3d(14px, 0, 0) rotate(8deg); }
+  46% { top: 50%; transform: translate3d(-24px, 0, 0) rotate(-11deg); }
+  60% { top: 36%; transform: translate3d(10px, 0, 0) rotate(6deg); }
+  74% { top: 20%; transform: translate3d(-18px, 0, 0) rotate(-7deg); }
+  88% { top: 8%; transform: translate3d(12px, 0, 0) rotate(9deg); }
+  94% { opacity: var(--bf-vis, 0.42); }
+  100% { top: -6%; transform: translate3d(-4px, 0, 0) rotate(13deg); opacity: 0; }
+}
+
+@keyframes mariposa-ruta-3 {
+  0% { top: 102%; transform: translate3d(4px, 0, 0) rotate(-8deg); opacity: 0; }
+  6% { opacity: var(--bf-vis, 0.44); }
+  14% { top: 86%; transform: translate3d(16px, 0, 0) rotate(7deg); }
+  26% { top: 74%; transform: translate3d(-22px, 0, 0) rotate(-10deg); }
+  38% { top: 62%; transform: translate3d(20px, 0, 0) rotate(9deg); }
+  52% { top: 48%; transform: translate3d(-14px, 0, 0) rotate(-6deg); }
+  66% { top: 34%; transform: translate3d(24px, 0, 0) rotate(10deg); }
+  80% { top: 18%; transform: translate3d(-10px, 0, 0) rotate(-5deg); }
+  94% { opacity: var(--bf-vis, 0.44); }
+  100% { top: -6%; transform: translate3d(6px, 0, 0) rotate(11deg); opacity: 0; }
+}
+
+@keyframes mariposa-ruta-4 {
+  0% { top: 102%; transform: translate3d(-4px, 0, 0) rotate(12deg); opacity: 0; }
+  6% { opacity: var(--bf-vis, 0.4); }
+  20% { top: 80%; transform: translate3d(-18px, 0, 0) rotate(-8deg); }
+  34% { top: 64%; transform: translate3d(22px, 0, 0) rotate(10deg); }
+  48% { top: 52%; transform: translate3d(-26px, 0, 0) rotate(-12deg); }
+  62% { top: 38%; transform: translate3d(16px, 0, 0) rotate(7deg); }
+  76% { top: 24%; transform: translate3d(-14px, 0, 0) rotate(-9deg); }
+  90% { top: 10%; transform: translate3d(20px, 0, 0) rotate(8deg); }
+  94% { opacity: var(--bf-vis, 0.4); }
+  100% { top: -6%; transform: translate3d(-8px, 0, 0) rotate(14deg); opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .mariposas-corredor {
+    width: min(88px, 20vw);
+  }
+
+  .mariposa-viajera:nth-child(n + 6) {
+    display: none;
+  }
+
+  .mariposa-reposo-impacto:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mariposa-viajera {
+    animation: none !important;
+    opacity: 0.35;
+  }
+
+  .mariposa-viajera-capas,
+  .mariposa-reposo-impacto .mariposa-reposo-img {
+    animation: none;
+  }
+}

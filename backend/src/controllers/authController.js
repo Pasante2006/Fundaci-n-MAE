@@ -23,8 +23,15 @@ export const login = asyncHandler(async (req, res) => {
   const usuario = await Usuario.findByEmail(email);
   if (!usuario) throw httpError(401, 'Credenciales inválidas');
 
-  const hash = String(usuario.password_hash).replace(/^\$2y\$/, '$2b$');
-  const ok = await bcrypt.compare(password, hash);
+  const hash = String(usuario.password_hash || '').trim().replace(/^\$2y\$/, '$2b$');
+  if (!hash.startsWith('$2')) throw httpError(401, 'Credenciales inválidas');
+
+  let ok = false;
+  try {
+    ok = await bcrypt.compare(password, hash);
+  } catch {
+    throw httpError(401, 'Credenciales inválidas');
+  }
   if (!ok) throw httpError(401, 'Credenciales inválidas');
 
   const token = tokenPara(usuario);

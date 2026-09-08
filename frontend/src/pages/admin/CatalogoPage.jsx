@@ -52,24 +52,28 @@ export default function CatalogoPage({ titulo, endpoint, nombreNuevo }) {
         <h1>{titulo}</h1>
         <button className="btn btn-primario" type="button" onClick={() => abrir()}>{nombreNuevo}</button>
       </div>
-      <table className="tabla">
-        <thead>
-          <tr><th></th><th>Nombre</th><th>Orden</th><th></th></tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <td>{item.imagen ? <img className="thumb" src={mediaUrl(item)} alt="" /> : '—'}</td>
-              <td>{item.nombre}</td>
-              <td>{item.orden}</td>
-              <td className="acciones">
-                <button className="btn btn-linea" type="button" onClick={() => abrir(item)}>Editar</button>
-                <button className="btn btn-peligro" type="button" onClick={() => borrar(item.id)}>Borrar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="catalogo-grid">
+        {items.map((item) => (
+          <article className="catalogo-card" key={item.id}>
+            {item.imagen ? (
+              <img
+                className="catalogo-card-foto"
+                src={mediaUrl(item)}
+                alt={item.nombre}
+                onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling?.classList.remove('oculto'); }}
+              />
+            ) : null}
+            <div className={`catalogo-card-vacio${item.imagen ? ' oculto' : ''}`}>Sin imagen</div>
+            <h3>{item.nombre}</h3>
+            <p>{item.descripcion || '—'}</p>
+            <span className="catalogo-card-orden">Orden: {item.orden}</span>
+            <div className="acciones">
+              <button className="btn btn-linea" type="button" onClick={() => abrir(item)}>Editar</button>
+              <button className="btn btn-peligro" type="button" onClick={() => borrar(item.id)}>Borrar</button>
+            </div>
+          </article>
+        ))}
+      </div>
       <Modal abierto={abierto} titulo={editando ? 'Editar' : nombreNuevo} onClose={() => setAbierto(false)}>
         <form className="form-grid" onSubmit={guardar}>
           <label className="campo">Nombre<input value={form.nombre} onChange={(e) => setForm({ ...form, nombre: e.target.value })} required /></label>

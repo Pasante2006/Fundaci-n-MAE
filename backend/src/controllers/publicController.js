@@ -6,6 +6,7 @@ import * as Colaborador from '../models/Colaborador.js';
 import { getDbStatus } from '../config/db.js';
 import { fallbackSitio } from '../utils/fallbacks.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
+import { mapColaborador } from '../utils/mediaPath.js';
 
 async function seguro(promesa, respaldo, etiqueta) {
   try {
@@ -25,6 +26,8 @@ export const sitio = asyncHandler(async (req, res) => {
     seguro(Colaborador.listar({ soloActivos: true }), fallbackSitio.colaboradores, 'colaboradores'),
   ]);
 
+  const colaboradoresActivos = colaboradores.length ? colaboradores : fallbackSitio.colaboradores;
+
   const hayBd = getDbStatus().conectado;
   res.json({
     ok: true,
@@ -34,7 +37,7 @@ export const sitio = asyncHandler(async (req, res) => {
       media,
       lugares,
       causas,
-      colaboradores: colaboradores.length ? colaboradores : fallbackSitio.colaboradores,
+      colaboradores: colaboradoresActivos.map(mapColaborador),
     },
   });
 });
